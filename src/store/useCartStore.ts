@@ -6,7 +6,7 @@ type CartItem = Product & { quantity: number };
 
 type CartState = {
   items: CartItem[];
-  addItem: (item: CartItem) => void;
+  addItem: (item: Product) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
   getTotalCount: () => number;
@@ -16,7 +16,7 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (product) => {
+      addItem: (product: Product) => {
         const items = get().items;
         const existing = items.find((item) => item.id === product.id);
 

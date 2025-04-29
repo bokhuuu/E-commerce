@@ -2,7 +2,6 @@ import { useCartStore } from "../store/useCartStore";
 
 const Cart = () => {
   const { items, removeItem, clearCart } = useCartStore();
-  console.log(items);
 
   const totalPrice = items.reduce(
     (sum, item) => sum + parseFloat(item.price) * item.quantity,

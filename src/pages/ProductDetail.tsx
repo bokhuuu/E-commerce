@@ -5,12 +5,11 @@ import { useCartStore } from "../store/useCartStore";
 const ProductDetail = () => {
   const { productId } = useParams();
   const { data: product, isLoading, isError } = useProduct(productId!);
+  const addItem = useCartStore((state) => state.addItem);
 
   const addToCart = () => {
     if (!product) return;
-    useCartStore.getState().addItem({ ...product, quantity: 1 });
-
-    console.log("Cart Items:", useCartStore.getState().items);
+    addItem(product);
   };
 
   if (isLoading) return <div>Loading...</div>;
