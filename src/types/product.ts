@@ -5,4 +5,6 @@ export type Product = {
   price: string;
   avatar: string;
   createdAt: string;
+  size?: string;
+  color?: string;
 };
