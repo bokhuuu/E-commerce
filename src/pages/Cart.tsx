@@ -1,12 +1,27 @@
 import { useCartStore } from "../store/useCartStore";
+import { useState } from "react";
 
 const Cart = () => {
-  const { items, removeItem, clearCart } = useCartStore();
+  const { items, removeItem, clearCart, updateQuantity } = useCartStore();
 
-  const totalPrice = items.reduce(
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+
+  const handleApplyPromo = () => {
+    if (promoCode.trim() === "2025") {
+      setDiscount(5 / 100);
+    } else {
+      setDiscount(0);
+    }
+  };
+
+  const subtotal = items.reduce(
     (sum, item) => sum + parseFloat(item.price) * item.quantity,
     0
   );
+
+  const discountAmount = subtotal * discount;
+  const total = subtotal - discountAmount;
 
   if (items.length === 0) {
     return (
@@ -39,6 +54,24 @@ const Cart = () => {
                 </p>
               </div>
             </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                disabled={item.quantity <= 1}
+                className="px-2 py-1 bg-gray-200 rounded"
+              >
+                -
+              </button>
+              <span>{item.quantity}</span>
+              <button
+                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                className="px-2 py-1 bg-gray-200 rounded"
+              >
+                +
+              </button>
+            </div>
+
             <button
               onClick={() => removeItem(item.id)}
               className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
@@ -49,8 +82,29 @@ const Cart = () => {
         ))}
       </div>
 
+      <div className="mt-10 flex gap-4">
+        <input
+          value={promoCode}
+          onChange={(e) => setPromoCode(e.target.value)}
+          placeholder="Add promo code"
+          className="border border-gray-300 p-2 rounded w-full"
+        />
+        <button
+          onClick={handleApplyPromo}
+          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Apply
+        </button>
+      </div>
+
       <div className="mt-10 text-right text-2xl font-bold">
-        Total: ${totalPrice.toFixed(2)}
+        <div>Subtotal: ${subtotal.toFixed(2)}</div>
+        {discount > 0 && (
+          <div className="text-green-600">
+            Discount (5%): -${discountAmount.toFixed(2)}
+          </div>
+        )}
+        <div className="text-2xl font-bold">Total: ${total.toFixed(2)}</div>
       </div>
 
       <div className="mt-4 flex justify-end">
