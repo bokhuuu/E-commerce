@@ -13,8 +13,8 @@ export const useFeedbacks = () => {
 
       return response.data.map((f) => ({
         ...f,
-        rating: getRandomInt(1, 5),
-        productId: getRandomInt(1, 20),
+        rating: f.rating ?? getRandomInt(1, 5),
+        productId: f.productId ?? getRandomInt(1, 20),
       })) as Feedback[];
     },
   });
