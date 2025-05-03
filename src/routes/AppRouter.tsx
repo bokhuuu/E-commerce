@@ -3,6 +3,7 @@ import Products from "../pages/Products";
 import ProductDetail from "../pages/ProductDetail";
 import Cart from "../pages/Cart";
 import Feedbacks from "../pages/Feedbacks";
+import SubmitFeedbackPage from "../pages/SubmitFeedback";
 
 const AppRouter = () => {
   return (
@@ -16,6 +17,10 @@ const AppRouter = () => {
         <Route path="/cart" element={<Cart />} />
 
         <Route path="/feedbacks" element={<Feedbacks />} />
+        <Route
+          path="/products/:productId/feedback"
+          element={<SubmitFeedbackPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

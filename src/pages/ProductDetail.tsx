@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useProduct } from "../hooks/useProduct";
 import { useCartStore } from "../store/useCartStore";
 
@@ -38,6 +38,12 @@ const ProductDetail = () => {
           </button>
         </div>
       </div>
+      <Link
+        to={`/products/${productId}/feedback`}
+        className="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+      >
+        Write a Review
+      </Link>
     </div>
   );
 };
