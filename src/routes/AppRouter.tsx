@@ -4,6 +4,8 @@ import ProductDetail from "../pages/ProductDetail";
 import Cart from "../pages/Cart";
 import Feedbacks from "../pages/Feedbacks";
 import SubmitFeedbackPage from "../pages/SubmitFeedback";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 
 const AppRouter = () => {
   return (
@@ -21,6 +23,9 @@ const AppRouter = () => {
           path="/products/:productId/feedback"
           element={<SubmitFeedbackPage />}
         />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
