@@ -14,7 +14,12 @@ export const useFeedbacks = () => {
       return response.data.map((f) => ({
         ...f,
         rating: f.rating ?? getRandomInt(1, 5),
-        productId: f.productId ?? getRandomInt(1, 20),
+        productId:
+          typeof f.productId === "number" &&
+          f.productId >= 1 &&
+          f.productId <= 20
+            ? f.productId
+            : getRandomInt(1, 20),
       })) as Feedback[];
     },
   });
