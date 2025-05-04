@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import Products from "../pages/Products";
 import ProductDetail from "../pages/ProductDetail";
+import CategoryPage from "../pages/CategoryPage";
 import Cart from "../pages/Cart";
 import Feedbacks from "../pages/Feedbacks";
 import SubmitFeedbackPage from "../pages/SubmitFeedback";
@@ -15,6 +16,8 @@ const AppRouter = () => {
 
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
+
+        <Route path="/category" element={<CategoryPage />} />
 
         <Route path="/cart" element={<Cart />} />
 
