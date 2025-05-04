@@ -26,23 +26,22 @@ const SearchInput = () => {
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search products..."
-        className="border px-3 py-2 rounded"
+        className="border px-3 py-2 rounded w-[130px] h-[25px]"
       />
+
+      <button
+        type="submit"
+        className="text-xs text-white bg-black px-3 py-1 rounded"
+      >
+        Search
+      </button>
 
       <button
         type="button"
         onClick={handleClear}
-        className="text-sm text-white bg-black px-3 py-1 rounded"
+        className="text-xs text-white bg-black px-3 py-1 rounded "
       >
         Clear
-      </button>
-
-      <button
-        type="submit"
-        className="text-sm text-white bg-black px-3 py-1 rounded"
-      >
-        Search
       </button>
     </form>
   );

@@ -55,29 +55,31 @@ const Cart = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-end gap-2">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  disabled={item.quantity <= 1}
+                  className="px-2 py-1 bg-gray-200 rounded"
+                >
+                  -
+                </button>
+                <span>{item.quantity}</span>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  className="px-2 py-1 bg-gray-200 rounded"
+                >
+                  +
+                </button>
+              </div>
+
               <button
-                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                disabled={item.quantity <= 1}
-                className="px-2 py-1 bg-gray-200 rounded"
+                onClick={() => removeItem(item.id)}
+                className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
               >
-                -
-              </button>
-              <span>{item.quantity}</span>
-              <button
-                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                className="px-2 py-1 bg-gray-200 rounded"
-              >
-                +
+                Remove
               </button>
             </div>
-
-            <button
-              onClick={() => removeItem(item.id)}
-              className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
-            >
-              Remove
-            </button>
           </div>
         ))}
       </div>
@@ -86,8 +88,8 @@ const Cart = () => {
         <input
           value={promoCode}
           onChange={(e) => setPromoCode(e.target.value)}
-          placeholder="Add promo code"
-          className="border border-gray-300 p-2 rounded w-full"
+          placeholder="Use code: 2025"
+          className="border border-gray-300 p-2 rounded w-[200px]"
         />
         <button
           onClick={handleApplyPromo}

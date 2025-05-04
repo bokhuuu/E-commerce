@@ -32,10 +32,10 @@ const CategoryPage = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="py-8">
       <h1 className="text-2xl font-bold mb-6">Filter Products</h1>
 
-      <div className="flex gap-3 mb-6">
+      <div className="flex flex-wrap gap-3 mb-6">
         {availableColors.map((c) => (
           <button
             key={c}
@@ -53,33 +53,33 @@ const CategoryPage = () => {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as "price" | "rating")}
-          className="border px-3 py-2 rounded"
+          className="text-xs text-white bg-black px-3 py-1 rounded"
         >
-          <option value="price">Sort by Price</option>
-          <option value="rating">Sort by Rating</option>
+          <option value="price">By Price</option>
+          <option value="rating">By Rating</option>
         </select>
 
         <select
           value={order}
           onChange={(e) => setOrder(e.target.value as "asc" | "desc")}
-          className="border px-3 py-2 rounded"
+          className="text-xs text-white bg-black px-3 py-1 rounded"
         >
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
+          <option value="asc">Asc</option>
+          <option value="desc">Desc</option>
         </select>
 
         <button
           onClick={handleClearFilters}
-          className="text-sm px-4 py-2 border rounded hover:bg-gray-100"
+          className="text-xs text-white bg-black px-3 py-1 rounded"
         >
-          Clear Filters
+          Clear
         </button>
       </div>
 
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {products?.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
